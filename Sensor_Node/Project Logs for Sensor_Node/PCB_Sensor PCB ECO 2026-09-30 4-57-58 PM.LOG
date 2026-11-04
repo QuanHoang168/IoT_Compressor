@@ -1,0 +1,3 @@
+Change Component Comment : Designator=P1 Old Comment=POWER+RS485 New Comment=5V/A/B/GND
+Change Component Comment : Designator=JP1 Old Comment=SWD New Comment=3V3/SWDIO/SWCLK/GND
+Added Room: Name=Sche_Sensor

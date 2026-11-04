@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=GND Pin=JP1-1
+Removed Pin From Net: NetName=3V3_2 Pin=JP1-2
+Removed Pin From Net: NetName=CS Pin=JP1-3
+Removed Pin From Net: NetName=MOSI Pin=JP1-6
+Removed Pin From Net: NetName=MISO Pin=JP1-7
+Removed Pin From Net: NetName=SCL Pin=JP1-8
+Removed Member From Class: ClassName=Sche_Sensor Member=JP1
+Added Component: Designator=ADXL1(ADXL345_TYPE_1)
+Added Pin To Net: NetName=GND Pin=ADXL1-1
+Added Pin To Net: NetName=3V3_2 Pin=ADXL1-2
+Added Pin To Net: NetName=CS Pin=ADXL1-3
+Added Pin To Net: NetName=MOSI Pin=ADXL1-6
+Added Pin To Net: NetName=MISO Pin=ADXL1-7
+Added Pin To Net: NetName=SCL Pin=ADXL1-8
+Added Pin To Net: NetName=GND Pin=ADXL1-9
+Added Member To Class: ClassName=Sche_Sensor Member=Component ADXL1 TYPE1
+Added Room: Name=Sche_Sensor

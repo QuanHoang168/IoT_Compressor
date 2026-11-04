@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=GND Pin=ADXL1-1
+Removed Pin From Net: NetName=3V3_2 Pin=ADXL1-2
+Removed Pin From Net: NetName=CS Pin=ADXL1-3
+Removed Pin From Net: NetName=MOSI Pin=ADXL1-6
+Removed Pin From Net: NetName=MISO Pin=ADXL1-7
+Removed Pin From Net: NetName=SCL Pin=ADXL1-8
+Change Component Footprint: Designator=ADXL1 Old Footprint=ADXL345_TYPE_1 New Footprint=ADXL345_TYPE_2
+Change Component Comment : Designator=C9 Old Comment= 101 New Comment=101
+Change Component Comment : Designator=ADXL1 Old Comment=TYPE1 New Comment=TYPE2
+Added Pin To Net: NetName=SCL Pin=ADXL1-1
+Added Pin To Net: NetName=MISO Pin=ADXL1-2
+Added Pin To Net: NetName=MOSI Pin=ADXL1-3
+Added Pin To Net: NetName=CS Pin=ADXL1-6
+Added Pin To Net: NetName=GND Pin=ADXL1-8
+Added Pin To Net: NetName=3V3_2 Pin=ADXL1-9
+Added Member To Class: ClassName=Sche_Sensor Member=Component ADXL1 TYPE2

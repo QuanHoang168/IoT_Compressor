@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=5V Pin=33-1
+Removed Pin From Net: NetName=5V Pin=33-1
+Removed Pin From Net: NetName=A Pin=33-2
+Removed Pin From Net: NetName=A Pin=33-2
+Removed Pin From Net: NetName=B Pin=33-3
+Removed Pin From Net: NetName=B Pin=33-3
+Removed Pin From Net: NetName=GND Pin=33-4
+Added Component: Designator=P1(CON 4 4EDG5.08)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH000979"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "CON 4 2EDG5.08-4P 5.08MM ( Xanh Cong)"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=5V Pin=P1-1
+Added Pin To Net: NetName=5V Pin=P1-1
+Added Pin To Net: NetName=A Pin=P1-2
+Added Pin To Net: NetName=A Pin=P1-2
+Added Pin To Net: NetName=B Pin=P1-3
+Added Pin To Net: NetName=B Pin=P1-3
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Member To Class: ClassName=Sche_Sensor Member=Component P1 5V/A/B/GND
+Added Room: Name=Sche_Sensor

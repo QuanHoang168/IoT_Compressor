@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=OSCIN Pin=U3-3
+Removed Pin From Net: NetName=OSCOUT Pin=U3-4
+Added Pin To Net: NetName=OSCIN Pin=U3-5
+Added Pin To Net: NetName=OSCOUT Pin=U3-6
+Added Room: Name=Sche_Sensor
