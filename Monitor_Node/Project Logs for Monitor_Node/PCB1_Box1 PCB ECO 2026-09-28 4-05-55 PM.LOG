@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=5V Pin=ESP1-24
+Removed Pin From Net: NetName=5V Pin=JP1-5
+Removed Pin From Net: NetName=5V Pin=R10-2
+Added Pin To Net: NetName=5V Pin=R10-1
+Added Pin To Net: NetName=TX_S485 Pin=ESP1-24
+Added Pin To Net: NetName=TX_S485 Pin=JP1-5
+Added Pin To Net: NetName=TX_S485 Pin=R10-2
+Added Pin To Net: NetName=TX_S485 Pin=U1-1
+Added Net: Name=TX_S485

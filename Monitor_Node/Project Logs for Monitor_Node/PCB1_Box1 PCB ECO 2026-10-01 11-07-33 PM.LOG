@@ -1,0 +1,19 @@
+Change Component Footprint: Designator=L2 Old Footprint=LED-0805-Blue New Footprint=LED-3MM-RED
+Change Component Footprint: Designator=L3 Old Footprint=LED-0805-Blue New Footprint=LED-3MM-RED
+Change Component Comment : Designator=L2 Old Comment=LED RX 485 New Comment=RX_485
+Change Component Comment : Designator=L3 Old Comment=LED TX 485 New Comment=TX_485
+Change component parameters: Designator = "L2" ("L2"); Footprint = "LED-0805-Blue"; UniqueID = "\XBDFIITX" ("\XBDFIITX")
+Change component parameters (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ma_Hang"; Value = "MH003892"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ten_Linh_Kien"; Value = "Led 3MM Ph? Ð? (10c)"; VariantName = "[No Variations]"
+Change component parameters: Designator = "L3" ("L3"); Footprint = "LED-0805-Blue"; UniqueID = "\JKATWXVS" ("\JKATWXVS")
+Change component parameters (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ma_Hang"; Value = "MH003892"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ten_Linh_Kien"; Value = "Led 3MM Ph? Ð? (10c)"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sche_Box1 Member=Component HB1 POWER-220V

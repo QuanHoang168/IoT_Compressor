@@ -1,0 +1,30 @@
+Added Component: Designator=P1(15EDG - 4P)
+Added Component: Designator=P2(15EDG - 4P)
+Added Component: Designator=P3(15EDG - 4P)
+Added Component: Designator=P4(15EDG - 4P)
+Added Component: Designator=P5(15EDG - 4P)
+Added Pin To Net: NetName=5V Pin=P1-1
+Added Pin To Net: NetName=A Pin=P1-2
+Added Pin To Net: NetName=B Pin=P1-3
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Pin To Net: NetName=5V Pin=P2-1
+Added Pin To Net: NetName=A Pin=P2-2
+Added Pin To Net: NetName=B Pin=P2-3
+Added Pin To Net: NetName=GND Pin=P2-4
+Added Pin To Net: NetName=5V Pin=P3-1
+Added Pin To Net: NetName=A Pin=P3-2
+Added Pin To Net: NetName=B Pin=P3-3
+Added Pin To Net: NetName=GND Pin=P3-4
+Added Pin To Net: NetName=5V Pin=P4-1
+Added Pin To Net: NetName=A Pin=P4-2
+Added Pin To Net: NetName=B Pin=P4-3
+Added Pin To Net: NetName=GND Pin=P4-4
+Added Pin To Net: NetName=5V Pin=P5-1
+Added Pin To Net: NetName=A Pin=P5-2
+Added Pin To Net: NetName=B Pin=P5-3
+Added Pin To Net: NetName=GND Pin=P5-4
+Added Member To Class: ClassName=Sche_Box1 Member=Component P1 15EDG - 4P
+Added Member To Class: ClassName=Sche_Box1 Member=Component P2 15EDG - 4P
+Added Member To Class: ClassName=Sche_Box1 Member=Component P3 15EDG - 4P
+Added Member To Class: ClassName=Sche_Box1 Member=Component P4 15EDG - 4P
+Added Member To Class: ClassName=Sche_Box1 Member=Component P5 15EDG - 4P

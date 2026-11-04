@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=BUT1 Pin=JP4-3
+Added Pin To Net: NetName=BUT2 Pin=JP4-5
+Added Pin To Net: NetName=BUT3 Pin=JP4-6
+Added Pin To Net: NetName=BUT4 Pin=JP4-7
+Added Pin To Net: NetName=LED1 Pin=R24-1
+Added Pin To Net: NetName=LED2 Pin=R25-1

@@ -1,0 +1,10 @@
+Change Component Footprint: Designator=C13 Old Footprint=tu 1206 New Footprint=tu 0805
+Change Component Comment : Designator=C13 Old Comment=104/10V(10%) New Comment=106 (10V/20%)
+Change component parameters: Designator = "C13" ("C13"); Footprint = "tu 1206"; UniqueID = "\PFORVGOD" ("\PFORVGOD")
+Change component parameters (AddParameter): Name = "Chung_Loai"; Value = "Dán"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ma_Hang"; Value = "MH004553"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "So_Chan"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ten_Linh_Kien"; Value = "T? 0805 106-10uF 10% 16V"; VariantName = "[No Variations]"
+Added Room: Name=Sche_Box1

@@ -1,0 +1,11 @@
+Change Component Comment : Designator=P1 Old Comment=RS485_1 New Comment=15EDG - 4P
+Change Component Comment : Designator=P2 Old Comment=RS485_2 New Comment=15EDG - 4P
+Change Component Comment : Designator=P3 Old Comment=RS485_3 New Comment=15EDG - 4P
+Change Component Comment : Designator=P4 Old Comment=RS485_4 New Comment=15EDG - 4P
+Change Component Comment : Designator=P5 Old Comment=RS485_5 New Comment=15EDG - 4P
+Change component parameters: Designator = "P1" ("P1"); Footprint = "CON 4 4EDG5.08"; UniqueID = "\FADREMBP" ("\FADREMBP")
+Change component parameters: Designator = "P2" ("P2"); Footprint = "CON 4 4EDG5.08"; UniqueID = "\EGTGVVTF" ("\EGTGVVTF")
+Change component parameters: Designator = "P3" ("P3"); Footprint = "CON 4 4EDG5.08"; UniqueID = "\HHHEJKFV" ("\HHHEJKFV")
+Change component parameters: Designator = "P4" ("P4"); Footprint = "CON 4 4EDG5.08"; UniqueID = "\TTLCDIAH" ("\TTLCDIAH")
+Change component parameters: Designator = "P5" ("P5"); Footprint = "CON 4 4EDG5.08"; UniqueID = "\DSPBKJPX" ("\DSPBKJPX")
+Added Room: Name=Sche_Box1

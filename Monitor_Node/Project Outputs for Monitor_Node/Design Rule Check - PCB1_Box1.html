@@ -1,0 +1,847 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2026-10-27</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:19:00 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc" class="file"><acronym title="E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc">E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">169</td></tr>
+</table>
+</td>
+</table><a name="IDJRC4F0XSZIXEPQOAHA04PQ5IZB2WPUVOKHDYAPKSVTGMR4V42EIB"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRD2LK3YHX2LDHY3HN0NNCWDTIEQUMVUV1CQQ14LKJAISC51CR5XM">Clearance Constraint (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTX3PY1NZBHKJL5M3TNCMHEYE1DF25HHT441CA0BPLDO00ODLHHUK">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWICRYYE5QAMEIMEZB21LXMYZVC5IAT5YO1Q3DANSGTXWKBUKIY3J">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEFM41NCNJVWGOTR1DJKODK2IBDC3SASYZ5JNLVCC0BVKBRVNJTVN">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDM1F33SGRMKIZIYRJ1GUDL51XTKJSGYVXNJEABLLS33ISG1NLL0EK">Width Constraint (Min=0.2mm) (Max=1.5mm) (Preferred=0.8mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGALYNCWIPXNDEETUGTJHLSANKEHHBVL5UINJGXFCBZQSEIYM5KPK">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD5QAX5KKOGK3EQHXP1UT2FJHYQ1JMCKDX1YNJYLXKAF4DFFL2I">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIHB0342PKV0FHFSK03I5IPGLNERDSKGIH5UVU3J1GZRPG03YSAC">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVWAYDP30PIA3MIUKWLP4NJHUEJIZIZLT2OAECSBVNAPP1CM5UZGE">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">81</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWQC4WE0D2N5JHM54AC5NMOHKOJD31VZLSJZP5QCGTA1JYYEWPMVK">Silk To Solder Mask (Clearance=0.01mm) (IsPad),(All)</a></td>
+<td class="column2">82</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF0VPOE454HHPEE0HBN2OFCVU1F3POOBXJYAFC0HCE3RYKI03ILSK">Silk to Silk (Clearance=0.1mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV3EEAHIQW0UZGZUP3SGQDPUJJPXIXAKO40HXFOKYISFUZ54TEOZP">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRH2PFSMROIYFEIV4X4X2J450FBRNEM3BCVBEZBCBAAGHUWAF34DL">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">169</td>
+</tr>
+</table><br><a name="IDVWAYDP30PIA3MIUKWLP4NJHUEJIZIZLT2OAECSBVNAPP1CM5UZGE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=3709.351mil|Location2.Y=3720.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=3709.351mil|Location2.Y=3720.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Arc (50.656mm,69.051mm) on Top Solder And Area Fill (41.453mm,69.27mm) (52.578mm,76.433mm) on Top Solder [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=3709.351mil|Location2.Y=3720.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=3709.351mil|Location2.Y=3720.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Arc (50.656mm,69.051mm) on Top Solder And Area Fill (41.453mm,69.27mm) (52.578mm,76.433mm) on Top Solder [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=4016.448mil|Location2.Y=4027.698mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=4016.448mil|Location2.Y=4027.698mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Arc (50.656mm,76.671mm) on Top Solder And Area Fill (41.453mm,69.27mm) (52.578mm,76.433mm) on Top Solder [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=4016.448mil|Location2.Y=4027.698mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.262mil|Location2.X=3002.512mil|Location1.Y=4016.448mil|Location2.Y=4027.698mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Arc (50.656mm,76.671mm) on Top Solder And Area Fill (41.453mm,69.27mm) (52.578mm,76.433mm) on Top Solder [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.171mil|Location2.X=2715.421mil|Location1.Y=4081.656mil|Location2.Y=4094.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.171mil|Location2.X=2715.421mil|Location1.Y=4081.656mil|Location2.Y=4094.429mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.012mm &lt; 0.254mm) Between Area Fill (41.453mm,69.27mm) (52.578mm,76.433mm) on Top Solder And Track (43.307mm,78.476mm)(43.312mm,78.481mm) on Top Solder [Top Solder] Mask Sliver [0.012mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2809.375mil|Location2.Y=2820.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2809.375mil|Location2.Y=2820.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-1(24.892mm,46.736mm) on Top Layer And Pad ESP1-2(24.892mm,45.466mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2359.375mil|Location2.Y=2370.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2359.375mil|Location2.Y=2370.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-10(24.892mm,35.306mm) on Top Layer And Pad ESP1-11(24.892mm,34.036mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2409.375mil|Location2.Y=2420.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2409.375mil|Location2.Y=2420.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-10(24.892mm,35.306mm) on Top Layer And Pad ESP1-9(24.892mm,36.576mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2309.375mil|Location2.Y=2320.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2309.375mil|Location2.Y=2320.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-11(24.892mm,34.036mm) on Top Layer And Pad ESP1-12(24.892mm,32.766mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2259.375mil|Location2.Y=2270.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2259.375mil|Location2.Y=2270.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-12(24.892mm,32.766mm) on Top Layer And Pad ESP1-13(24.892mm,31.496mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2209.375mil|Location2.Y=2220.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2209.375mil|Location2.Y=2220.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-13(24.892mm,31.496mm) on Top Layer And Pad ESP1-14(24.892mm,30.226mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2209.375mil|Location2.Y=2220.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2209.375mil|Location2.Y=2220.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-15(43.942mm,30.226mm) on Top Layer And Pad ESP1-16(43.942mm,31.496mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2259.375mil|Location2.Y=2270.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2259.375mil|Location2.Y=2270.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-16(43.942mm,31.496mm) on Top Layer And Pad ESP1-17(43.942mm,32.766mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2309.375mil|Location2.Y=2320.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2309.375mil|Location2.Y=2320.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-17(43.942mm,32.766mm) on Top Layer And Pad ESP1-18(43.942mm,34.036mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2359.375mil|Location2.Y=2370.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2359.375mil|Location2.Y=2370.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-18(43.942mm,34.036mm) on Top Layer And Pad ESP1-19(43.942mm,35.306mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2409.375mil|Location2.Y=2420.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2409.375mil|Location2.Y=2420.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-19(43.942mm,35.306mm) on Top Layer And Pad ESP1-20(43.942mm,36.576mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2759.375mil|Location2.Y=2770.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2759.375mil|Location2.Y=2770.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-2(24.892mm,45.466mm) on Top Layer And Pad ESP1-3(24.892mm,44.196mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2459.375mil|Location2.Y=2470.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2459.375mil|Location2.Y=2470.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-20(43.942mm,36.576mm) on Top Layer And Pad ESP1-21(43.942mm,37.846mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2509.375mil|Location2.Y=2520.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2509.375mil|Location2.Y=2520.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-21(43.942mm,37.846mm) on Top Layer And Pad ESP1-22(43.942mm,39.116mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2559.375mil|Location2.Y=2570.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2559.375mil|Location2.Y=2570.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-22(43.942mm,39.116mm) on Top Layer And Pad ESP1-23(43.942mm,40.386mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2609.375mil|Location2.Y=2620.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2609.375mil|Location2.Y=2620.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-23(43.942mm,40.386mm) on Top Layer And Pad ESP1-24(43.942mm,41.656mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2659.375mil|Location2.Y=2670.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2659.375mil|Location2.Y=2670.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-24(43.942mm,41.656mm) on Top Layer And Pad ESP1-25(43.942mm,42.926mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2709.375mil|Location2.Y=2720.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2709.375mil|Location2.Y=2720.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-25(43.942mm,42.926mm) on Top Layer And Pad ESP1-26(43.942mm,44.196mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2759.375mil|Location2.Y=2770.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2759.375mil|Location2.Y=2770.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-26(43.942mm,44.196mm) on Top Layer And Pad ESP1-27(43.942mm,45.466mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2809.375mil|Location2.Y=2820.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2692.879mil|Location2.X=2704.129mil|Location1.Y=2809.375mil|Location2.Y=2820.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-27(43.942mm,45.466mm) on Top Layer And Pad ESP1-28(43.942mm,46.736mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2709.375mil|Location2.Y=2720.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2709.375mil|Location2.Y=2720.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-3(24.892mm,44.196mm) on Top Layer And Pad ESP1-4(24.892mm,42.926mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.375mil|Location2.X=2555.625mil|Location1.Y=2887.879mil|Location2.Y=2899.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.375mil|Location2.X=2555.625mil|Location1.Y=2887.879mil|Location2.Y=2899.129mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-30(40.005mm,48.895mm) on Top Layer And Pad ESP1-31(38.735mm,48.895mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.375mil|Location2.X=2505.625mil|Location1.Y=2887.879mil|Location2.Y=2899.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.375mil|Location2.X=2505.625mil|Location1.Y=2887.879mil|Location2.Y=2899.129mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-31(38.735mm,48.895mm) on Top Layer And Pad ESP1-32(37.465mm,48.895mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2659.375mil|Location2.Y=2670.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2659.375mil|Location2.Y=2670.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-4(24.892mm,42.926mm) on Top Layer And Pad ESP1-5(24.892mm,41.656mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2609.375mil|Location2.Y=2620.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2609.375mil|Location2.Y=2620.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-5(24.892mm,41.656mm) on Top Layer And Pad ESP1-6(24.892mm,40.386mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2559.375mil|Location2.Y=2570.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2559.375mil|Location2.Y=2570.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-6(24.892mm,40.386mm) on Top Layer And Pad ESP1-7(24.892mm,39.116mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2509.375mil|Location2.Y=2520.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2509.375mil|Location2.Y=2520.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-7(24.892mm,39.116mm) on Top Layer And Pad ESP1-8(24.892mm,37.846mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2459.375mil|Location2.Y=2470.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1942.879mil|Location2.X=1954.129mil|Location1.Y=2459.375mil|Location2.Y=2470.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad ESP1-8(24.892mm,37.846mm) on Top Layer And Pad ESP1-9(24.892mm,36.576mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1776.677mil|Location2.X=1787.927mil|Location1.Y=4379.147mil|Location2.Y=4390.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1776.677mil|Location2.X=1787.927mil|Location1.Y=4379.147mil|Location2.Y=4390.397mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.099mm &lt; 0.254mm) Between Pad Type_C1-(18.921mm,85.411mm) on Multi-Layer And Pad Type_C1-(20.32mm,85.979mm) on Multi-Layer [Top Solder] Mask Sliver [0.099mm] / [Bottom Solder] Mask Sliver [0.099mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.068mil|Location2.X=1790.318mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1779.068mil|Location2.X=1790.318mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.22mm &lt; 0.254mm) Between Pad Type_C1-(18.921mm,85.411mm) on Multi-Layer And Pad Type_C1-B1(20.193mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.22mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1786.384mil|Location2.X=1799.385mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1786.384mil|Location2.X=1799.385mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.12mm &lt; 0.254mm) Between Pad Type_C1-(20.32mm,85.979mm) on Multi-Layer And Pad Type_C1-A12(19.939mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.12mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.366mil|Location2.X=1815.322mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.366mil|Location2.X=1815.322mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.12mm &lt; 0.254mm) Between Pad Type_C1-(20.32mm,85.979mm) on Multi-Layer And Pad Type_C1-A9(20.701mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.12mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.375mil|Location2.X=1805.625mil|Location1.Y=4362.32mil|Location2.Y=4373.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.375mil|Location2.X=1805.625mil|Location1.Y=4362.32mil|Location2.Y=4373.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.066mm &lt; 0.254mm) Between Pad Type_C1-(20.32mm,85.979mm) on Multi-Layer And Pad Type_C1-B1(20.193mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2041.994mil|Location2.X=2053.244mil|Location1.Y=4379.148mil|Location2.Y=4390.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2041.994mil|Location2.X=2053.244mil|Location1.Y=4379.148mil|Location2.Y=4390.398mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.095mm &lt; 0.254mm) Between Pad Type_C1-(26.162mm,85.979mm) on Multi-Layer And Pad Type_C1-(27.557mm,85.411mm) on Multi-Layer [Top Solder] Mask Sliver [0.095mm] / [Bottom Solder] Mask Sliver [0.095mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.366mil|Location2.X=2045.322mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.366mil|Location2.X=2045.322mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.12mm &lt; 0.254mm) Between Pad Type_C1-(26.162mm,85.979mm) on Multi-Layer And Pad Type_C1-A1(26.543mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.12mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2016.384mil|Location2.X=2029.385mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2016.384mil|Location2.X=2029.385mil|Location1.Y=4363.128mil|Location2.Y=4374.378mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.12mm &lt; 0.254mm) Between Pad Type_C1-(26.162mm,85.979mm) on Multi-Layer And Pad Type_C1-A4(25.781mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.12mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.375mil|Location2.X=2035.625mil|Location1.Y=4362.32mil|Location2.Y=4373.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2024.375mil|Location2.X=2035.625mil|Location1.Y=4362.32mil|Location2.Y=4373.57mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.066mm &lt; 0.254mm) Between Pad Type_C1-(26.162mm,85.979mm) on Multi-Layer And Pad Type_C1-B12(26.289mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2039.603mil|Location2.X=2050.853mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2039.603mil|Location2.X=2050.853mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.216mm &lt; 0.254mm) Between Pad Type_C1-(27.557mm,85.411mm) on Multi-Layer And Pad Type_C1-B12(26.289mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.375mil|Location2.X=2030.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.375mil|Location2.X=2030.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.205mm &lt; 0.254mm) Between Pad Type_C1-A4(25.781mm,84.836mm) on Top Layer And Pad Type_C1-B12(26.289mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.375mil|Location2.X=1960.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.375mil|Location2.X=1960.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.205mm &lt; 0.254mm) Between Pad Type_C1-A5(24.511mm,84.836mm) on Top Layer And Pad Type_C1-B7(24.003mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.296mil|Location2.X=1980.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1969.296mil|Location2.X=1980.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.201mm &lt; 0.254mm) Between Pad Type_C1-A5(24.511mm,84.836mm) on Top Layer And Pad Type_C1-B8(25.015mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.201mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.296mil|Location2.X=1920.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.296mil|Location2.X=1920.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.201mm &lt; 0.254mm) Between Pad Type_C1-A6(23.491mm,84.836mm) on Top Layer And Pad Type_C1-A7(22.987mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.201mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1929.296mil|Location2.X=1940.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1929.296mil|Location2.X=1940.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.209mm &lt; 0.254mm) Between Pad Type_C1-A6(23.491mm,84.836mm) on Top Layer And Pad Type_C1-B7(24.003mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.209mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1889.375mil|Location2.X=1900.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1889.375mil|Location2.X=1900.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.205mm &lt; 0.254mm) Between Pad Type_C1-A7(22.987mm,84.836mm) on Top Layer And Pad Type_C1-B6(22.479mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.296mil|Location2.X=1860.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.296mil|Location2.X=1860.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.201mm &lt; 0.254mm) Between Pad Type_C1-A8(21.967mm,84.836mm) on Top Layer And Pad Type_C1-B5(21.463mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.201mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1869.296mil|Location2.X=1880.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1869.296mil|Location2.X=1880.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.209mm &lt; 0.254mm) Between Pad Type_C1-A8(21.967mm,84.836mm) on Top Layer And Pad Type_C1-B6(22.479mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.209mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1799.375mil|Location2.X=1810.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1799.375mil|Location2.X=1810.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.205mm &lt; 0.254mm) Between Pad Type_C1-A9(20.701mm,84.836mm) on Top Layer And Pad Type_C1-B1(20.193mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.375mil|Location2.X=1840.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1829.375mil|Location2.X=1840.625mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.205mm &lt; 0.254mm) Between Pad Type_C1-B4(20.955mm,84.836mm) on Top Layer And Pad Type_C1-B5(21.463mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.296mil|Location2.X=2000.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.296mil|Location2.X=2000.546mil|Location1.Y=4361.013mil|Location2.Y=4372.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.209mm &lt; 0.254mm) Between Pad Type_C1-B8(25.015mm,84.836mm) on Top Layer And Pad Type_C1-B9(25.527mm,84.836mm) on Top Layer [Top Solder] Mask Sliver [0.209mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3973.588mil|Location2.Y=3984.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3973.588mil|Location2.Y=3984.838mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-1(7.57mm,75.922mm) on Top Layer And Pad U2-2(7.57mm,75.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.533mil|Location2.X=1395.783mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.533mil|Location2.X=1395.783mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-10(9.66mm,71.832mm) on Top Layer And Pad U2-11(10.16mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1364.847mil|Location2.X=1376.097mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1364.847mil|Location2.X=1376.097mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-10(9.66mm,71.832mm) on Top Layer And Pad U2-9(9.16mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.217mil|Location2.X=1415.467mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.217mil|Location2.X=1415.467mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-11(10.16mm,71.832mm) on Top Layer And Pad U2-12(10.66mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.902mil|Location2.X=1435.152mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.902mil|Location2.X=1435.152mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-12(10.66mm,71.832mm) on Top Layer And Pad U2-13(11.16mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.588mil|Location2.X=1454.838mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.588mil|Location2.X=1454.838mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-13(11.16mm,71.832mm) on Top Layer And Pad U2-14(11.66mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3875.162mil|Location2.Y=3886.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3875.162mil|Location2.Y=3886.412mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-15(12.75mm,72.922mm) on Top Layer And Pad U2-16(12.75mm,73.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3894.847mil|Location2.Y=3906.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3894.847mil|Location2.Y=3906.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-16(12.75mm,73.422mm) on Top Layer And Pad U2-17(12.75mm,73.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3914.532mil|Location2.Y=3925.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3914.532mil|Location2.Y=3925.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-17(12.75mm,73.922mm) on Top Layer And Pad U2-18(12.75mm,74.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3934.218mil|Location2.Y=3945.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3934.218mil|Location2.Y=3945.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-18(12.75mm,74.422mm) on Top Layer And Pad U2-19(12.75mm,74.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3953.903mil|Location2.Y=3965.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3953.903mil|Location2.Y=3965.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-19(12.75mm,74.922mm) on Top Layer And Pad U2-20(12.75mm,75.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3953.903mil|Location2.Y=3965.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3953.903mil|Location2.Y=3965.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-2(7.57mm,75.422mm) on Top Layer And Pad U2-3(7.57mm,74.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3973.588mil|Location2.Y=3984.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.06mil|Location2.X=1529.31mil|Location1.Y=3973.588mil|Location2.Y=3984.838mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-20(12.75mm,75.422mm) on Top Layer And Pad U2-21(12.75mm,75.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.588mil|Location2.X=1454.838mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1443.588mil|Location2.X=1454.838mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-22(11.66mm,77.012mm) on Top Layer And Pad U2-23(11.16mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.902mil|Location2.X=1435.152mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.902mil|Location2.X=1435.152mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-23(11.16mm,77.012mm) on Top Layer And Pad U2-24(10.66mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.217mil|Location2.X=1415.467mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.217mil|Location2.X=1415.467mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-24(10.66mm,77.012mm) on Top Layer And Pad U2-25(10.16mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.533mil|Location2.X=1395.783mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1384.533mil|Location2.X=1395.783mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-25(10.16mm,77.012mm) on Top Layer And Pad U2-26(9.66mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1364.847mil|Location2.X=1376.097mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1364.847mil|Location2.X=1376.097mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-26(9.66mm,77.012mm) on Top Layer And Pad U2-27(9.16mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1345.162mil|Location2.X=1356.412mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1345.162mil|Location2.X=1356.412mil|Location1.Y=4048.06mil|Location2.Y=4059.31mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-27(9.16mm,77.012mm) on Top Layer And Pad U2-28(8.66mm,77.012mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3934.218mil|Location2.Y=3945.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3934.218mil|Location2.Y=3945.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-3(7.57mm,74.922mm) on Top Layer And Pad U2-4(7.57mm,74.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3914.532mil|Location2.Y=3925.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3914.532mil|Location2.Y=3925.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-4(7.57mm,74.422mm) on Top Layer And Pad U2-5(7.57mm,73.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3894.847mil|Location2.Y=3906.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3894.847mil|Location2.Y=3906.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-5(7.57mm,73.922mm) on Top Layer And Pad U2-6(7.57mm,73.422mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3875.162mil|Location2.Y=3886.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1270.69mil|Location2.X=1281.94mil|Location1.Y=3875.162mil|Location2.Y=3886.412mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-6(7.57mm,73.422mm) on Top Layer And Pad U2-7(7.57mm,72.922mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1345.162mil|Location2.X=1356.412mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1345.162mil|Location2.X=1356.412mil|Location1.Y=3800.69mil|Location2.Y=3811.94mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.043mm &lt; 0.254mm) Between Pad U2-8(8.66mm,71.832mm) on Top Layer And Pad U2-9(9.16mm,71.832mm) on Top Layer [Top Solder] Mask Sliver [0.043mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.43mil|Location2.X=2990.765mil|Location1.Y=3645.202mil|Location2.Y=3656.452mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.43mil|Location2.X=2990.765mil|Location1.Y=3645.202mil|Location2.Y=3656.452mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.138mm &lt; 0.254mm) Between Track (43.307mm,67.183mm)(50.292mm,67.183mm) on Top Solder And Track (50.549mm,67.479mm)(50.972mm,68.96mm) on Top Solder [Top Solder] Mask Sliver [0.138mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.264mil|Location2.X=2989.514mil|Location1.Y=3645.793mil|Location2.Y=3657.579mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.264mil|Location2.X=2989.514mil|Location1.Y=3645.793mil|Location2.Y=3657.579mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.142mm &lt; 0.254mm) Between Track (48.963mm,67.24mm)(50.233mm,67.24mm) on Top Solder And Track (50.549mm,67.479mm)(50.972mm,68.96mm) on Top Solder [Top Solder] Mask Sliver [0.142mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.264mil|Location2.X=2989.514mil|Location1.Y=4079.47mil|Location2.Y=4091.316mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.264mil|Location2.X=2989.514mil|Location1.Y=4079.47mil|Location2.Y=4091.316mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.142mm &lt; 0.254mm) Between Track (48.963mm,78.481mm)(50.233mm,78.481mm) on Top Solder And Track (50.549mm,78.242mm)(50.972mm,76.761mm) on Top Solder [Top Solder] Mask Sliver [0.142mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWQC4WE0D2N5JHM54AC5NMOHKOJD31VZLSJZP5QCGTA1JYYEWPMVK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.01mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2239.501mil|Location2.X=2240.764mil|Location1.Y=4328.235mil|Location2.Y=4329.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2239.501mil|Location2.X=2240.764mil|Location1.Y=4328.235mil|Location2.Y=4329.497mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (31.115mm,84.176mm) on Top Overlay And Pad T1-1(32.512mm,84.963mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.556mil|Location2.X=2643.818mil|Location1.Y=4167.518mil|Location2.Y=4168.781mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2642.556mil|Location2.X=2643.818mil|Location1.Y=4167.518mil|Location2.Y=4168.781mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (45.097mm,85.371mm) on Top Overlay And Pad L4-1(39.497mm,85.471mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3008.754mil|Location2.X=3010.016mil|Location1.Y=4360.432mil|Location2.Y=4361.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3008.754mil|Location2.X=3010.016mil|Location1.Y=4360.432mil|Location2.Y=4361.694mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (45.097mm,85.371mm) on Top Overlay And Pad L4-2(50.097mm,85.371mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.869mil|Location2.X=2823.131mil|Location1.Y=1450.061mil|Location2.Y=1451.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.869mil|Location2.X=2823.131mil|Location1.Y=1450.061mil|Location2.Y=1451.323mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (47.117mm,12.7mm) on Top Overlay And Pad L3-1(47.117mm,11.43mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.875mil|Location2.X=2823.137mil|Location1.Y=1548.68mil|Location2.Y=1549.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.875mil|Location2.X=2823.137mil|Location1.Y=1548.68mil|Location2.Y=1549.943mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (47.117mm,12.7mm) on Top Overlay And Pad L3-2(47.117mm,13.97mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.869mil|Location2.X=2823.131mil|Location1.Y=1820.061mil|Location2.Y=1821.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.869mil|Location2.X=2823.131mil|Location1.Y=1820.061mil|Location2.Y=1821.323mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (47.117mm,22.098mm) on Top Overlay And Pad L2-1(47.117mm,20.828mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.875mil|Location2.X=2823.137mil|Location1.Y=1918.68mil|Location2.Y=1919.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2821.875mil|Location2.X=2823.137mil|Location1.Y=1918.68mil|Location2.Y=1919.943mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (47.117mm,22.098mm) on Top Overlay And Pad L2-2(47.117mm,23.368mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.869mil|Location2.X=2993.131mil|Location1.Y=1820.061mil|Location2.Y=1821.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.869mil|Location2.X=2993.131mil|Location1.Y=1820.061mil|Location2.Y=1821.323mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (51.435mm,22.098mm) on Top Overlay And Pad L5-1(51.435mm,20.828mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.875mil|Location2.X=2993.137mil|Location1.Y=1918.68mil|Location2.Y=1919.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2991.875mil|Location2.X=2993.137mil|Location1.Y=1918.68mil|Location2.Y=1919.943mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (51.435mm,22.098mm) on Top Overlay And Pad L5-2(51.435mm,23.368mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.869mil|Location2.X=2998.131mil|Location1.Y=1450.061mil|Location2.Y=1451.323mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.869mil|Location2.X=2998.131mil|Location1.Y=1450.061mil|Location2.Y=1451.323mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (51.562mm,12.7mm) on Top Overlay And Pad L6-1(51.562mm,11.43mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.875mil|Location2.X=2998.137mil|Location1.Y=1548.68mil|Location2.Y=1549.943mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2996.875mil|Location2.X=2998.137mil|Location1.Y=1548.68mil|Location2.Y=1549.943mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Arc (51.562mm,12.7mm) on Top Overlay And Pad L6-2(51.562mm,13.97mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1139.369mil|Location2.X=1140.631mil|Location1.Y=3493.369mil|Location2.Y=3494.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1139.369mil|Location2.X=1140.631mil|Location1.Y=3493.369mil|Location2.Y=3494.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT1-2(3.099mm,62.89mm) on Multi-Layer And Track (3.556mm,63.348mm)(3.581mm,63.373mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=3202.369mil|Location2.Y=3203.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=3202.369mil|Location2.Y=3203.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT2-2(3.023mm,55.499mm) on Multi-Layer And Track (3.48mm,55.956mm)(3.505mm,55.982mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1131.369mil|Location2.X=1132.631mil|Location1.Y=2332.369mil|Location2.Y=2333.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1131.369mil|Location2.X=1132.631mil|Location1.Y=2332.369mil|Location2.Y=2333.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT3-2(2.896mm,33.401mm) on Multi-Layer And Track (3.353mm,33.858mm)(3.378mm,33.884mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=2912.369mil|Location2.Y=2913.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=2912.369mil|Location2.Y=2913.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT4-2(3.023mm,48.133mm) on Multi-Layer And Track (3.48mm,48.59mm)(3.505mm,48.616mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=2622.369mil|Location2.Y=2623.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.369mil|Location2.X=1137.631mil|Location1.Y=2622.369mil|Location2.Y=2623.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT5-2(3.023mm,40.767mm) on Multi-Layer And Track (3.48mm,41.224mm)(3.505mm,41.25mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.369mil|Location2.X=1130.631mil|Location1.Y=2043.369mil|Location2.Y=2044.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.369mil|Location2.X=1130.631mil|Location1.Y=2043.369mil|Location2.Y=2044.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad BT6-2(2.845mm,26.06mm) on Multi-Layer And Track (3.302mm,26.518mm)(3.327mm,26.543mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3457.755mil|Location2.X=3459.017mil|Location1.Y=3664.999mil|Location2.Y=3666.261mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3457.755mil|Location2.X=3459.017mil|Location1.Y=3664.999mil|Location2.Y=3666.261mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C14-1(61.843mm,68.707mm) on Top Layer And Track (62.443mm,65.999mm)(62.443mm,71.415mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3130.983mil|Location2.X=3132.245mil|Location1.Y=3664.999mil|Location2.Y=3666.261mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3130.983mil|Location2.X=3132.245mil|Location1.Y=3664.999mil|Location2.Y=3666.261mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C14-2(54.743mm,68.707mm) on Top Layer And Track (54.143mm,64.557mm)(54.143mm,72.857mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.802mil|Location2.X=2931.064mil|Location1.Y=3387.873mil|Location2.Y=3389.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.802mil|Location2.X=2931.064mil|Location1.Y=3387.873mil|Location2.Y=3389.135mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C15-1(47.983mm,61.468mm) on Top Layer And Track (49.033mm,58.633mm)(49.033mm,64.303mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2603.03mil|Location2.X=2604.293mil|Location1.Y=3387.873mil|Location2.Y=3389.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2603.03mil|Location2.X=2604.293mil|Location1.Y=3387.873mil|Location2.Y=3389.135mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C15-2(41.783mm,61.468mm) on Top Layer And Track (40.733mm,57.318mm)(40.733mm,65.618mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3600.983mil|Location2.X=3602.245mil|Location1.Y=3667.873mil|Location2.Y=3669.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3600.983mil|Location2.X=3602.245mil|Location1.Y=3667.873mil|Location2.Y=3669.135mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C5-1(67.131mm,68.58mm) on Top Layer And Track (66.081mm,65.745mm)(66.081mm,71.415mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3927.755mil|Location2.X=3929.017mil|Location1.Y=3667.873mil|Location2.Y=3669.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3927.755mil|Location2.X=3929.017mil|Location1.Y=3667.873mil|Location2.Y=3669.135mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad C5-2(73.331mm,68.58mm) on Top Layer And Track (74.381mm,64.43mm)(74.381mm,72.73mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.369mil|Location2.X=1795.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.369mil|Location2.X=1795.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D2-1(20.193mm,81.28mm) on Top Layer And Track (20.193mm,80.835mm)(20.193mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.369mil|Location2.X=1845.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.369mil|Location2.X=1845.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D2-2(21.463mm,81.28mm) on Top Layer And Track (21.463mm,80.835mm)(21.463mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.369mil|Location2.X=1950.632mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1949.369mil|Location2.X=1950.632mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D3-1(24.13mm,81.28mm) on Top Layer And Track (24.13mm,80.835mm)(24.13mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.369mil|Location2.X=1900.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.369mil|Location2.X=1900.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D3-2(22.86mm,81.28mm) on Top Layer And Track (22.86mm,80.835mm)(22.86mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.369mil|Location2.X=2045.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2044.369mil|Location2.X=2045.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D4-1(26.543mm,81.28mm) on Top Layer And Track (26.543mm,80.835mm)(26.543mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.369mil|Location2.X=1995.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.369mil|Location2.X=1995.631mil|Location1.Y=4191.495mil|Location2.Y=4192.757mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad D4-2(25.273mm,81.28mm) on Top Layer And Track (25.273mm,80.835mm)(25.273mm,81.725mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2857.107mil|Location2.Y=2858.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2857.107mil|Location2.Y=2858.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-1(24.892mm,46.736mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2407.107mil|Location2.Y=2408.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2407.107mil|Location2.Y=2408.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-10(24.892mm,35.306mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2357.107mil|Location2.Y=2358.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2357.107mil|Location2.Y=2358.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-11(24.892mm,34.036mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2307.107mil|Location2.Y=2308.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2307.107mil|Location2.Y=2308.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-12(24.892mm,32.766mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2257.107mil|Location2.Y=2258.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2257.107mil|Location2.Y=2258.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-13(24.892mm,31.496mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2207.107mil|Location2.Y=2208.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2207.107mil|Location2.Y=2208.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-14(24.892mm,30.226mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2171.972mil|Location2.Y=2173.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2171.972mil|Location2.Y=2173.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-15(43.942mm,30.226mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2221.972mil|Location2.Y=2223.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2221.972mil|Location2.Y=2223.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-16(43.942mm,31.496mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2271.972mil|Location2.Y=2273.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2271.972mil|Location2.Y=2273.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-17(43.942mm,32.766mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2321.972mil|Location2.Y=2323.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2321.972mil|Location2.Y=2323.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-18(43.942mm,34.036mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2371.972mil|Location2.Y=2373.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2371.972mil|Location2.Y=2373.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-19(43.942mm,35.306mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2807.107mil|Location2.Y=2808.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2807.107mil|Location2.Y=2808.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-2(24.892mm,45.466mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2421.972mil|Location2.Y=2423.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2421.972mil|Location2.Y=2423.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-20(43.942mm,36.576mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2471.972mil|Location2.Y=2473.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2471.972mil|Location2.Y=2473.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-21(43.942mm,37.846mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2521.972mil|Location2.Y=2523.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2521.972mil|Location2.Y=2523.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-22(43.942mm,39.116mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2571.972mil|Location2.Y=2573.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2571.972mil|Location2.Y=2573.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-23(43.942mm,40.386mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2621.972mil|Location2.Y=2623.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2621.972mil|Location2.Y=2623.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-24(43.942mm,41.656mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2671.972mil|Location2.Y=2673.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2671.972mil|Location2.Y=2673.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-25(43.942mm,42.926mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2721.972mil|Location2.Y=2723.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2721.972mil|Location2.Y=2723.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-26(43.942mm,44.196mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2771.972mil|Location2.Y=2773.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2771.972mil|Location2.Y=2773.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-27(43.942mm,45.466mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2821.972mil|Location2.Y=2823.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2699.369mil|Location2.X=2700.631mil|Location1.Y=2821.972mil|Location2.Y=2823.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-28(43.942mm,46.736mm) on Top Layer And Track (43.18mm,27.051mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2757.107mil|Location2.Y=2758.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2757.107mil|Location2.Y=2758.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-3(24.892mm,44.196mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591.766mil|Location2.X=2593.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2591.766mil|Location2.X=2593.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-30(40.005mm,48.895mm) on Top Layer And Track (25.146mm,48.133mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2541.766mil|Location2.X=2543.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2541.766mil|Location2.X=2543.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-31(38.735mm,48.895mm) on Top Layer And Track (25.146mm,48.133mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.766mil|Location2.X=2493.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.766mil|Location2.X=2493.028mil|Location1.Y=2894.369mil|Location2.Y=2895.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-32(37.465mm,48.895mm) on Top Layer And Track (25.146mm,48.133mm)(43.18mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2707.107mil|Location2.Y=2708.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2707.107mil|Location2.Y=2708.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-4(24.892mm,42.926mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2657.107mil|Location2.Y=2658.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2657.107mil|Location2.Y=2658.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-5(24.892mm,41.656mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2607.107mil|Location2.Y=2608.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2607.107mil|Location2.Y=2608.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-6(24.892mm,40.386mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2557.107mil|Location2.Y=2558.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2557.107mil|Location2.Y=2558.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-7(24.892mm,39.116mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2507.107mil|Location2.Y=2508.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2507.107mil|Location2.Y=2508.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-8(24.892mm,37.846mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2457.107mil|Location2.Y=2458.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.369mil|Location2.X=1990.631mil|Location1.Y=2457.107mil|Location2.Y=2458.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad ESP1-9(24.892mm,36.576mm) on Top Layer And Track (25.146mm,27.051mm)(25.146mm,48.133mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2835.619mil|Location2.X=2836.881mil|Location1.Y=1849.369mil|Location2.Y=1850.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2835.619mil|Location2.X=2836.881mil|Location1.Y=1849.369mil|Location2.Y=1850.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L2-1(47.117mm,20.828mm) on Multi-Layer And Track (45.847mm,21.59mm)(48.387mm,21.59mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2851.974mil|Location2.X=2853.236mil|Location1.Y=1887.453mil|Location2.Y=1888.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2851.974mil|Location2.X=2853.236mil|Location1.Y=1887.453mil|Location2.Y=1888.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L2-2(47.117mm,23.368mm) on Multi-Layer And Track (45.847mm,21.59mm)(47.117mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2848.508mil|Location2.X=2849.77mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2848.508mil|Location2.X=2849.77mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L2-2(47.117mm,23.368mm) on Multi-Layer And Track (45.847mm,22.606mm)(47.117mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L2-2(47.117mm,23.368mm) on Multi-Layer And Track (47.117mm,22.606mm)(48.387mm,21.59mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L2-2(47.117mm,23.368mm) on Multi-Layer And Track (47.117mm,22.606mm)(48.387mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2835.619mil|Location2.X=2836.881mil|Location1.Y=1479.369mil|Location2.Y=1480.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2835.619mil|Location2.X=2836.881mil|Location1.Y=1479.369mil|Location2.Y=1480.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L3-1(47.117mm,11.43mm) on Multi-Layer And Track (45.847mm,12.192mm)(48.387mm,12.192mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2851.974mil|Location2.X=2853.236mil|Location1.Y=1517.453mil|Location2.Y=1518.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2851.974mil|Location2.X=2853.236mil|Location1.Y=1517.453mil|Location2.Y=1518.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L3-2(47.117mm,13.97mm) on Multi-Layer And Track (45.847mm,12.192mm)(47.117mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2848.508mil|Location2.X=2849.77mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2848.508mil|Location2.X=2849.77mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L3-2(47.117mm,13.97mm) on Multi-Layer And Track (45.847mm,13.208mm)(47.117mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L3-2(47.117mm,13.97mm) on Multi-Layer And Track (47.117mm,13.208mm)(48.387mm,12.192mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.369mil|Location2.X=2855.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L3-2(47.117mm,13.97mm) on Multi-Layer And Track (47.117mm,13.208mm)(48.387mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2534.684mil|Location2.X=2535.946mil|Location1.Y=4167.518mil|Location2.Y=4168.781mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2534.684mil|Location2.X=2535.946mil|Location1.Y=4167.518mil|Location2.Y=4168.781mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L4-1(39.497mm,85.471mm) on Top Layer And Track (38.997mm,79.371mm)(38.997mm,91.471mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3011.062mil|Location2.X=3012.324mil|Location1.Y=4163.581mil|Location2.Y=4164.844mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3011.062mil|Location2.X=3012.324mil|Location1.Y=4163.581mil|Location2.Y=4164.844mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L4-2(50.097mm,85.371mm) on Top Layer And Track (51.097mm,79.371mm)(51.097mm,91.471mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.619mil|Location2.X=3006.881mil|Location1.Y=1849.369mil|Location2.Y=1850.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3005.619mil|Location2.X=3006.881mil|Location1.Y=1849.369mil|Location2.Y=1850.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L5-1(51.435mm,20.828mm) on Multi-Layer And Track (50.165mm,21.59mm)(52.705mm,21.59mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3021.974mil|Location2.X=3023.236mil|Location1.Y=1887.453mil|Location2.Y=1888.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3021.974mil|Location2.X=3023.236mil|Location1.Y=1887.453mil|Location2.Y=1888.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L5-2(51.435mm,23.368mm) on Multi-Layer And Track (50.165mm,21.59mm)(51.435mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3018.508mil|Location2.X=3019.77mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3018.508mil|Location2.X=3019.77mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L5-2(51.435mm,23.368mm) on Multi-Layer And Track (50.165mm,22.606mm)(51.435mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3024.369mil|Location2.X=3025.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3024.369mil|Location2.X=3025.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L5-2(51.435mm,23.368mm) on Multi-Layer And Track (51.435mm,22.606mm)(52.705mm,21.59mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3024.369mil|Location2.X=3025.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3024.369mil|Location2.X=3025.631mil|Location1.Y=1889.369mil|Location2.Y=1890.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L5-2(51.435mm,23.368mm) on Multi-Layer And Track (51.435mm,22.606mm)(52.705mm,22.606mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3010.619mil|Location2.X=3011.881mil|Location1.Y=1479.369mil|Location2.Y=1480.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3010.619mil|Location2.X=3011.881mil|Location1.Y=1479.369mil|Location2.Y=1480.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L6-1(51.562mm,11.43mm) on Multi-Layer And Track (50.292mm,12.192mm)(52.832mm,12.192mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3026.974mil|Location2.X=3028.236mil|Location1.Y=1517.453mil|Location2.Y=1518.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3026.974mil|Location2.X=3028.236mil|Location1.Y=1517.453mil|Location2.Y=1518.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L6-2(51.562mm,13.97mm) on Multi-Layer And Track (50.292mm,12.192mm)(51.562mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3023.508mil|Location2.X=3024.77mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3023.508mil|Location2.X=3024.77mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L6-2(51.562mm,13.97mm) on Multi-Layer And Track (50.292mm,13.208mm)(51.562mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3029.369mil|Location2.X=3030.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3029.369mil|Location2.X=3030.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L6-2(51.562mm,13.97mm) on Multi-Layer And Track (51.562mm,13.208mm)(52.832mm,12.192mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3029.369mil|Location2.X=3030.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3029.369mil|Location2.X=3030.631mil|Location1.Y=1519.369mil|Location2.Y=1520.631mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.01mm) Between Pad L6-2(51.562mm,13.97mm) on Multi-Layer And Track (51.562mm,13.208mm)(52.832mm,13.208mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDF0VPOE454HHPEE0HBN2OFCVU1F3POOBXJYAFC0HCE3RYKI03ILSK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.1mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4435.069mil|Location2.X=4438.693mil|Location1.Y=3498.188mil|Location2.Y=3501.812mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4435.069mil|Location2.X=4438.693mil|Location1.Y=3498.188mil|Location2.Y=3501.812mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.1mm) Between Text "L1" (88.296mm,63.365mm) on Top Overlay And Track (54.229mm,63.5mm)(87.376mm,63.5mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4438.188mil|Location2.X=4441.812mil|Location1.Y=3492.866mil|Location2.Y=3496.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4438.188mil|Location2.X=4441.812mil|Location1.Y=3492.866mil|Location2.Y=3496.491mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.1mm) Between Text "L1" (88.296mm,63.365mm) on Top Overlay And Track (87.376mm,6.35mm)(87.376mm,63.5mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDV3EEAHIQW0UZGZUP3SGQDPUJJPXIXAKO40HXFOKYISFUZ54TEOZP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.563mil|Location2.X=1713.838mil|Location1.Y=2392.563mil|Location2.Y=2422.946mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.563mil|Location2.X=1713.838mil|Location1.Y=2392.563mil|Location2.Y=2422.946mil|Absolute=True">Net Antennae: Track (16.891mm,35.56mm)(17.78mm,35.56mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1689.306mil|Location2.X=1710.581mil|Location1.Y=2480.82mil|Location2.Y=2511.203mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1689.306mil|Location2.X=1710.581mil|Location1.Y=2480.82mil|Location2.Y=2511.203mil|Absolute=True">Net Antennae: Track (17.364mm,37.468mm)(17.697mm,37.802mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.563mil|Location2.X=1713.838mil|Location1.Y=2492.563mil|Location2.Y=2522.946mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.563mil|Location2.X=1713.838mil|Location1.Y=2492.563mil|Location2.Y=2522.946mil|Absolute=True">Net Antennae: Track (17.488mm,38.1mm)(17.78mm,38.1mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4312.445mil|Location2.X=4453.821mil|Location1.Y=4512.445mil|Location2.Y=4744.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Altium_Practice\IoT_Compressor\Interface_Box_Modified\PCB1_Box1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4312.445mil|Location2.X=4453.821mil|Location1.Y=4512.445mil|Location2.Y=4744.912mil|Absolute=True">Net Antennae: Via (85.725mm,90.805mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

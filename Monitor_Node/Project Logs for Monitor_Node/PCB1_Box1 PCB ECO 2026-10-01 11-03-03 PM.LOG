@@ -1,0 +1,54 @@
+Removed Pin From Net: NetName=TX_S485 Pin=ESP1-24
+Removed Pin From Net: NetName=RX_S485 Pin=ESP1-25
+Removed Pin From Net: NetName=RX_S485 Pin=JP1-4
+Removed Pin From Net: NetName=TX_S485 Pin=JP1-5
+Added Component: Designator=C22(tu 1206)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "Dán"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH004545"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "So_Chan"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "T? 1206 105-1uF 20% 50V"; VariantName = "[No Variations]"
+Added Component: Designator=R26(tro smd 1206)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "Dán"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH005908"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "So_Chan"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Tr? 1206 5% 4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R27(tro smd 1206)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "Dán"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH005908"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "So_Chan"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Tr? 1206 5% 4.7k"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C22-1
+Added Pin To Net: NetName=RX_S485 Pin=ESP1-16
+Added Pin To Net: NetName=TX_S485 Pin=ESP1-17
+Added Pin To Net: NetName=TX_S485 Pin=JP3-7
+Added Pin To Net: NetName=RX_S485 Pin=JP3-8
+Added Pin To Net: NetName=RTS Pin=U2-24
+Added Pin To Net: NetName=DTR Pin=U2-28
+Added Pin To Net: NetName=GND Pin=U2-29
+Added Pin To Net: NetName=NetC22_2 Pin=C22-2
+Added Pin To Net: NetName=NetC22_2 Pin=U2-22
+Added Net: Name=NetC22_2
+Added Pin To Net: NetName=NetR26_2 Pin=R26-2
+Added Pin To Net: NetName=NetR26_2 Pin=U2-26
+Added Net: Name=NetR26_2
+Added Pin To Net: NetName=NetR27_2 Pin=R27-2
+Added Pin To Net: NetName=NetR27_2 Pin=U2-25
+Added Net: Name=NetR27_2
+Added Pin To Net: NetName=RX0 Pin=ESP1-24
+Added Pin To Net: NetName=RX0 Pin=JP1-5
+Added Pin To Net: NetName=RX0 Pin=R26-1
+Added Net: Name=RX0
+Added Pin To Net: NetName=TX0 Pin=ESP1-25
+Added Pin To Net: NetName=TX0 Pin=JP1-4
+Added Pin To Net: NetName=TX0 Pin=R27-1
+Added Net: Name=TX0
+Added Member To Class: ClassName=Sche_Box1 Member=Component C22 104/10V(10%)
+Added Member To Class: ClassName=Sche_Box1 Member=Component R26 4.7k
+Added Member To Class: ClassName=Sche_Box1 Member=Component R27 4.7k
+Added Room: Name=Sche_Box1

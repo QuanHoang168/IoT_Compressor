@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=B Pin=F2-2
+Removed Pin From Net: NetName=A Pin=F3-2
+Removed Pin From Net: NetName=B Pin=R9-1
+Removed Pin From Net: NetName=A Pin=R10-1
+Removed Pin From Net: NetName=B Pin=R10-2
+Removed Pin From Net: NetName=A Pin=R13-2
+Change Component Comment : Designator=P2 Old Comment=RS485-2 New Comment=RS485-1
+Change Component Comment : Designator=P3 Old Comment=RS485-3 New Comment=RS485-1
+Change Component Comment : Designator=P4 Old Comment=RS485-4 New Comment=RS485-1
+Change Component Comment : Designator=P5 Old Comment=RS485-5 New Comment=RS485-1
+Added Pin To Net: NetName=A Pin=F2-2
+Added Pin To Net: NetName=B Pin=F3-2
+Added Pin To Net: NetName=A Pin=R9-1
+Added Pin To Net: NetName=B Pin=R10-1
+Added Pin To Net: NetName=A Pin=R10-2
+Added Pin To Net: NetName=B Pin=R13-2
+Change Net Name : Old Net Name=A New Net Name=A_P
+Change Net Name : Old Net Name=B New Net Name=B_N

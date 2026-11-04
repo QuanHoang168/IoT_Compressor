@@ -1,0 +1,10 @@
+Added Pin To Net: NetName=5V Pin=ESP1-24
+Added Pin To Net: NetName=5V Pin=JP1-5
+Added Pin To Net: NetName=RX_S485 Pin=ESP1-25
+Added Pin To Net: NetName=RX_S485 Pin=JP1-4
+Added Pin To Net: NetName=RX_S485 Pin=U1-4
+Added Pin To Net: NetName=RX_S485 Pin=U1-5
+Added Net: Name=RX_S485
+Added Member To Class: ClassName=Sche_Box1 Member=Component D2 LESD5D5.0CT1G
+Added Member To Class: ClassName=Sche_Box1 Member=Component D3 LESD5D5.0CT1G
+Added Member To Class: ClassName=Sche_Box1 Member=Component D4 LESD5D5.0CT1G

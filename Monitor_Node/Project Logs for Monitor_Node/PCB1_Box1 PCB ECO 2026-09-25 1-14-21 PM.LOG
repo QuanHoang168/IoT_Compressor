@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=GND Pin=*-3
+Removed Pin From Net: NetName=5V Pin=*-4
+Removed Member From Class: ClassName=Sche_Box1 Member=*
+Added Component: Designator=HLK_1(HLK_20M05)
+Added Pin To Net: NetName=GND Pin=HLK_1-3
+Added Pin To Net: NetName=5V Pin=HLK_1-4
+Added Pin To Net: NetName=NetHLK_1_1 Pin=HLK_1-1
+Added Pin To Net: NetName=NetHLK_1_1 Pin=L1-4
+Added Net: Name=NetHLK_1_1
+Added Pin To Net: NetName=NetHLK_1_2 Pin=HLK_1-2
+Added Pin To Net: NetName=NetHLK_1_2 Pin=L1-2
+Added Net: Name=NetHLK_1_2
+Added Member To Class: ClassName=Sche_Box1 Member=Component HLK_1 HLK_20M05
+Added Room: Name=Sche_Box1

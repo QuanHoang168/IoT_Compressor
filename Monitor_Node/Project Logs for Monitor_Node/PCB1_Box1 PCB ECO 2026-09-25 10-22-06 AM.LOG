@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=VBUSA Pin=D2-
+Added Pin To Net: NetName=VBUSA Pin=D2-
+Added Pin To Net: NetName=USB_DN Pin=D3-
+Added Pin To Net: NetName=USB_DN Pin=D3-
+Added Pin To Net: NetName=USB_DP Pin=D4-
+Added Pin To Net: NetName=USB_DP Pin=D4-
+Added Member To Class: ClassName=Sche_Box1 Member=Component ESP1 ESP32-C5-WROOM-1/1U
