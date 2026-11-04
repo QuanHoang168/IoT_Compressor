@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=3V3 Pin=C44-1
+Removed Pin From Net: NetName=3V3 Pin=R62-2
+Added Pin To Net: NetName=3V3_D Pin=C44-1
+Added Pin To Net: NetName=3V3_D Pin=R62-2
+Added Member To Class: ClassName=Sche_gateway Member=Component U6 A7677_openCPU

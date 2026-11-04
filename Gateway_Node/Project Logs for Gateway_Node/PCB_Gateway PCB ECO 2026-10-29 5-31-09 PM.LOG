@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=SIM1-1
+Removed Pin From Net: NetName=USIM_VDD Pin=SIM1-2
+Removed Pin From Net: NetName=NetR65_2 Pin=SIM1-4
+Removed Pin From Net: NetName=NetR63_2 Pin=SIM1-5
+Removed Pin From Net: NetName=NetR64_2 Pin=SIM1-6
+Removed Member From Class: ClassName=Sche_gateway Member=SIM1
+Added Component: Designator=S1(SIM SOCKET 6P)
+Added Pin To Net: NetName=USIM_VDD Pin=S1-1
+Added Pin To Net: NetName=GND Pin=S1-2
+Added Pin To Net: NetName=NetR65_2 Pin=S1-3
+Added Pin To Net: NetName=NetR64_2 Pin=S1-5
+Added Pin To Net: NetName=NetR63_2 Pin=S1-6
+Added Member To Class: ClassName=Sche_gateway Member=Component S1 SIM SOCKET 6P

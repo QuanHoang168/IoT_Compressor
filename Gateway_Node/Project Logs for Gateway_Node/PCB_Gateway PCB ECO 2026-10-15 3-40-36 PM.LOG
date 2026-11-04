@@ -1,0 +1,60 @@
+Removed Member From Class: ClassName=Sche_gateway Member=D2
+Removed Member From Class: ClassName=Sche_gateway Member=D3
+Removed Member From Class: ClassName=Sche_gateway Member=D4
+Added Member To Class: ClassName=Sche_gateway Member=Component *1 Anten_IPEX
+Added Member To Class: ClassName=Sche_gateway Member=Component C4 220uF
+Added Member To Class: ClassName=Sche_gateway Member=Component C9 104/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C10 104/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C11 22nF
+Added Member To Class: ClassName=Sche_gateway Member=Component C12 6.8nF
+Added Member To Class: ClassName=Sche_gateway Member=Component C17 103/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C18 6.8nF
+Added Member To Class: ClassName=Sche_gateway Member=Component C19 104/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C20 470uF
+Added Member To Class: ClassName=Sche_gateway Member=Component C21 100nF
+Added Member To Class: ClassName=Sche_gateway Member=Component C23 105
+Added Member To Class: ClassName=Sche_gateway Member=Component C32 18PF
+Added Member To Class: ClassName=Sche_gateway Member=Component C33 104/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C35 103/10V(10%)
+Added Member To Class: ClassName=Sche_gateway Member=Component C39 100uF
+Added Member To Class: ClassName=Sche_gateway Member=Component C40 10pF
+Added Member To Class: ClassName=Sche_gateway Member=Component C41 33nF
+Added Member To Class: ClassName=Sche_gateway Member=Component HLK_1 HLK_20M05
+Added Member To Class: ClassName=Sche_gateway Member=Component L2 33uH - 3A SMD
+Added Member To Class: ClassName=Sche_gateway Member=Component L5 LED_2
+Added Member To Class: ClassName=Sche_gateway Member=Component L7 LED_4
+Added Member To Class: ClassName=Sche_gateway Member=Component L11 LED_8
+Added Member To Class: ClassName=Sche_gateway Member=Component L12 47uH - L xuyen
+Added Member To Class: ClassName=Sche_gateway Member=Component R4 1k
+Added Member To Class: ClassName=Sche_gateway Member=Component R11 51R
+Added Member To Class: ClassName=Sche_gateway Member=Component R12 330R
+Added Member To Class: ClassName=Sche_gateway Member=Component R13 330R
+Added Member To Class: ClassName=Sche_gateway Member=Component R14 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R16 330R
+Added Member To Class: ClassName=Sche_gateway Member=Component R18 330R
+Added Member To Class: ClassName=Sche_gateway Member=Component R21 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R27 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R29 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R30 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R31 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R32 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R33 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R35 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R36 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R38 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R40 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R41 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R42 7.5k
+Added Member To Class: ClassName=Sche_gateway Member=Component R43 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R44 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R48 12.4K
+Added Member To Class: ClassName=Sche_gateway Member=Component R49 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R50 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R51 1M
+Added Member To Class: ClassName=Sche_gateway Member=Component R52 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R53 10k
+Added Member To Class: ClassName=Sche_gateway Member=Component R63 22R
+Added Member To Class: ClassName=Sche_gateway Member=Component R64 22R
+Added Member To Class: ClassName=Sche_gateway Member=Component U2 cp2102
+Added Member To Class: ClassName=Sche_gateway Member=Component U5 W5500-SM
+Added Room: Name=Sche_gateway

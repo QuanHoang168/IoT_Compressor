@@ -1,0 +1,3 @@
+Change Component Comment : Designator=JP5 Old Comment=JP Module LCD New Comment=GND/5V/SDA/SCL
+Added Member To Class: ClassName=Sche_gateway Member=Component A1 Anten_IPEX
+Added Room: Name=Sche_gateway

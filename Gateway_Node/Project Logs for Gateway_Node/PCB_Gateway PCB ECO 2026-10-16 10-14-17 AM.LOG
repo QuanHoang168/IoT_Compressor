@@ -1,0 +1,3 @@
+Change Component Comment : Designator=CN1 Old Comment=RJ45-HR911105A-TH New Comment=Ethernet
+Change Component Designator: OldDesignator=3232 NewDesignator=A1
+Added Room: Name=Sche_gateway

@@ -1,0 +1,5 @@
+Added Pin To Net: NetName=/INT Pin=ESP1-6
+Added Pin To Net: NetName=/RESET Pin=ESP1-7
+Added Pin To Net: NetName=/INT Pin=JP4-1
+Added Pin To Net: NetName=/RESET Pin=JP4-2
+Added Room: Name=Sche_gateway
